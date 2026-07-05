@@ -12,11 +12,14 @@ POSTGRES_DB        ?= thesisflow
 # Detect OS for backup script
 ifeq ($(OS),Windows_NT)
     BACKUP_CMD := powershell -NonInteractive -File ./database/backup.ps1
+    DEV_CMD    := powershell -NonInteractive -File ./dev.ps1
 else
     BACKUP_CMD := ./database/backup.sh
+    DEV_CMD    := ./dev.sh
 endif
 
 .PHONY: help \
+        dev \
         up down restart ps logs \
         tools \
         db-shell db-shell-app db-shell-ro db-logs db-backup db-reset \
@@ -28,6 +31,9 @@ endif
 help:
 	@echo ""
 	@echo "ThesisFlow"
+	@echo ""
+	@echo "  Dev"
+	@echo "    make dev              Start everything (Docker + engine) with health check"
 	@echo ""
 	@echo "  Infrastructure"
 	@echo "    make up               Start postgres + redis"
@@ -54,6 +60,13 @@ help:
 	@echo "    make web-install      Install web dependencies"
 	@echo "    make web-dev          Start web dev server"
 	@echo ""
+
+# -----------------------------------------------------------------------------
+# Dev
+# -----------------------------------------------------------------------------
+
+dev:
+	$(DEV_CMD)
 
 # -----------------------------------------------------------------------------
 # Infrastructure
