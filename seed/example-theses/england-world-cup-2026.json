@@ -1,0 +1,76 @@
+{
+  "title": "England Will Win the 2026 FIFA World Cup",
+  "summary": "England's national football team will win the 2026 FIFA World Cup, hosted across the United States, Canada, and Mexico. It's coming home.",
+  "description": "England last won a World Cup in 1966, at Wembley, against West Germany, 4–2 after extra time. That is not recent.\n\nIn the sixty years since, England have exited via penalty shootout more times than most nations have qualified. They have a gift for manufacturing hope in the group stage and despair in the knockouts. They have the players. They have the manager. They have the fans. They have the heartbreak.\n\nAnd yet — 2026 feels different. It always feels different.\n\nThis thesis exists primarily to test ThesisFlow's handling of time-bound, definitively resolvable predictions. Unlike the philosophical theses in this seed set, this one will actually close. On July 19, 2026, either England have won the World Cup or they have not. There will be no ambiguity. No epistemological grey area. No retreating to 'undetectable by any instrument.'\n\nThis is what a good thesis looks like structurally: a clear proposition, hard criteria, a fixed expiry, and a resolution that is objectively verifiable. The Flying Spaghetti Monster will never resolve. England vs the World Cup will.\n\nThe confidence score is low. This is not a slight against England. It reflects the base rate: 32 teams enter, 1 wins. England are better than average but not so dominant that the odds collapse. History also applies a discount.",
+  "status": "ACTIVE",
+  "visibility": "PUBLIC",
+  "original_author": "ThesisFlow Seed",
+  "original_source": "FIFA World Cup 2026 (June–July 2026)",
+  "expires_at": "2026-07-19T23:59:59Z",
+  "current_confidence": 14.0,
+  "confidence_rationale": "England are a strong side and have navigated the group stage. Base rate for any team winning from this point is low. Historical penalty record and tournament fragility apply a further discount. 14% reflects genuine contention without wishful thinking.",
+  "author_stated_confidence": 85.0,
+  "ai_stated_confidence": 11.0,
+  "ai_stated_rationale": "A 32-team tournament gives any group-stage qualifier roughly a 3% base rate. England are clearly above average, perhaps top 6–8 in the field, which inflates the estimate to the 10–15% range. The author's 85% almost certainly reflects supporter optimism rather than calibrated probability. Historical knockout-stage underperformance, particularly on penalties, is real and data-backed. Estimate: ~11%.",
+  "relevance_score": 8,
+  "monitoring_profile": "STANDARD",
+  "tags": ["football", "sports-prediction", "world-cup", "england", "time-bound", "falsifiable", "2026"],
+  "criteria": [
+    {
+      "type": "SUPPORT",
+      "description": "England win all knockout matches through to the final without requiring a penalty shootout",
+      "rationale": "Winning in normal time or extra time demonstrates the dominance required to win a tournament. Penalty wins are valid but historically England's penalty record introduces significant variance.",
+      "weight": 7,
+      "impact_if_confirmed": 40,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "SUPPORT",
+      "description": "England defeat at least one of Brazil, France, Spain, or Germany in the knockout stages",
+      "rationale": "Beating a top-tier nation in a knockout match is the clearest signal that England have the quality to go all the way. Winning a bracket without facing elite opposition is insufficient evidence.",
+      "weight": 6,
+      "impact_if_confirmed": 25,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "SUPPORT",
+      "description": "England reach the final",
+      "rationale": "Getting to the final is a necessary (though not sufficient) condition. Confidence should increase substantially at this point.",
+      "weight": 8,
+      "impact_if_confirmed": 35,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "FALSIFY",
+      "description": "England are eliminated at any stage of the tournament",
+      "rationale": "Elimination at any point renders the thesis false. This is the primary falsification criterion.",
+      "weight": 10,
+      "impact_if_confirmed": -100,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "FALSIFY",
+      "description": "England lose a penalty shootout",
+      "rationale": "England have lost penalty shootouts at the 1990, 1998, 2006, and 2021 tournaments. A shootout loss is virtually always an exit. This criterion is tracked separately from general elimination given its historical significance.",
+      "weight": 9,
+      "impact_if_confirmed": -95,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "WATCH_SIGNAL",
+      "description": "Key injuries to first-choice players during the tournament",
+      "rationale": "Squad depth is real but a significant injury to a first-choice starter mid-tournament materially affects the probability. Worth monitoring without applying a fixed delta.",
+      "weight": 6,
+      "impact_if_confirmed": -20,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "WATCH_SIGNAL",
+      "description": "Draw results — quality of opposition in each knockout match",
+      "rationale": "Tournament bracket luck is significant. Landing in the easier half of the draw substantially raises the probability of reaching the final; landing opposite Brazil and France reduces it.",
+      "weight": 5,
+      "impact_if_confirmed": 15,
+      "current_fulfillment": 0
+    }
+  ]
+}
