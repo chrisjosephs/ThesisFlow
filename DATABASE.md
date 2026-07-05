@@ -1,5 +1,7 @@
 users
 -----
+A registered user of the ThesisFlow platform.
+
 + id
 + username
 + email
@@ -12,6 +14,8 @@ users
 
 theses
 -------
+The primary domain object. Represents a proposition whose confidence changes as evidence arrives.
+
 + id
 + owner_user_id
 + title
@@ -35,6 +39,8 @@ theses
 
 thesis_confidence_history
 -------------------------
+An immutable log of every confidence change on a thesis, capturing the delta, the reason, and what triggered it.
+
 + id
 + thesis_id
 + confidence_before
@@ -205,6 +211,7 @@ WEBHOOK
 
 monitoring_profiles
 -------------------
+Defines how frequently a thesis is checked for new evidence, from real-time to bi-weekly. Seeded at startup; users choose one per thesis.
 
 + id
 + name
@@ -215,6 +222,7 @@ monitoring_profiles
 
 criteria
 --------
+A condition attached to a thesis that, if met, would meaningfully support it, falsify it, or trigger a watch signal.
 
 + id
 + thesis_id
@@ -236,6 +244,7 @@ WATCH_SIGNAL
 
 alerts
 ------
+A notification delivered to a user when something notable happens on a thesis they own or follow.
 
 + id
 + user_id
@@ -248,6 +257,7 @@ alerts
 
 comments
 --------
+A user comment on a thesis, visible to anyone who can see the thesis.
 
 + id
 + thesis_id
@@ -258,6 +268,7 @@ comments
 
 tags
 ----
+A label used to categorise and discover theses across the platform.
 
 + id
 + name
@@ -265,6 +276,7 @@ tags
 
 thesis_tags
 -----------
+Join table linking theses to their tags.
 
 + thesis_id
 + tag_id
@@ -291,6 +303,7 @@ INVITED   -- owner sent invite, awaiting acceptance
 
 thesis_forks
 ------------
+Records when a user derives a new thesis from an existing one, preserving the lineage between the original and the fork.
 
 + parent_thesis_id
 + child_thesis_id
