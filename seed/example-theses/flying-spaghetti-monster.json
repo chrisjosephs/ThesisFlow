@@ -1,0 +1,83 @@
+{
+  "title": "The Flying Spaghetti Monster: A Pasta-Based Theory of Universal Origin",
+  "summary": "An omnipotent, supernatural being composed of spaghetti and meatballs created the universe after drinking heavily. This creator, known as the Flying Spaghetti Monster (FSM), continues to influence physical reality, including deliberately making carbon dating unreliable by altering physical constants with His Noodly Appendage.",
+  "description": "In 2005, Bobby Henderson sent an open letter to the Kansas State Board of Education protesting the inclusion of intelligent design in science curricula. His proposed alternative: Pastafarianism, the belief that the universe was created by a Flying Spaghetti Monster — a deity made of spaghetti and meatballs who had been drinking heavily at the time of creation.\n\nThe brilliance of the FSM is not merely comedic. It is philosophically precise. Henderson's argument was structural: if intelligent design cannot be falsified and therefore qualifies as science, then the FSM theory satisfies the same criteria and deserves equal classroom time. The FSM is, by design, exactly as empirically supportable as any other unfalsifiable supernatural creator.\n\nThe divine intoxication at the moment of creation is a particularly elegant detail. It explains, in a single stroke, why the universe contains so many apparent imperfections, contradictions, and seemingly arbitrary physical constants. A sober god would presumably have done better.\n\nThe large-scale structure of the universe — the cosmic web of filaments and voids — does, to the naked eye, resemble an enormous bowl of spaghetti. This is either evidence of His existence, or a coincidence, or a reminder that humans are pattern-recognition machines who will find pasta in anything if sufficiently motivated.\n\nThesisFlow should treat this thesis with the same rigour as any other. The confidence score should be near-zero but not identically zero — the FSM cannot be empirically disproved any more than Russell's teapot can, and intellectual honesty demands we acknowledge the epistemological equivalence.",
+  "status": "ACTIVE",
+  "visibility": "PUBLIC",
+  "original_author": "Bobby Henderson",
+  "original_source": "Open Letter to the Kansas School Board (2005); The Gospel of the Flying Spaghetti Monster (2006)",
+  "current_confidence": 1.0,
+  "confidence_rationale": "No evidence for the FSM exists. Evidence against is structurally inadmissible under the thesis's own terms. Confidence is set to 1% rather than 0% as a gesture of epistemic humility and inter-faith goodwill.",
+  "author_stated_confidence": 100.0,
+  "ai_stated_confidence": 0.01,
+  "ai_stated_rationale": "Bobby Henderson would claim 100% certainty, but this is a satirical position designed to expose the epistemological structure of unfalsifiable supernatural claims, not a genuine probability estimate. Evaluated on the same empirical basis as any other cosmological theory, the FSM hypothesis has no supporting evidence, no mechanism, and no predictive power that distinguishes it from any other unconstrained supernatural origin story. However, it cannot be falsified by design, so a hard 0% would overclaim. It sits at the same calibration floor as Russell's Teapot. Estimate: ~0.01%. RAmen.",
+  "relevance_score": 5,
+  "monitoring_profile": "COSMIC",
+  "tags": ["unfalsifiable", "pastafarianism", "satire", "philosophy-of-science", "intelligent-design", "epistemology", "burden-of-proof", "absurdism", "supernatural", "cosmology"],
+  "criteria": [
+    {
+      "type": "SUPPORT",
+      "description": "Spectroscopic analysis of the cosmic microwave background reveals trace signatures of ethanol or carbohydrate-based compounds consistent with pre-creation heavy drinking",
+      "rationale": "If the FSM drank heavily before creating the universe, residual chemical signatures might theoretically persist in the earliest observable light. This is the strongest empirical hook in the entire thesis.",
+      "weight": 8,
+      "impact_if_confirmed": 70,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "SUPPORT",
+      "description": "The large-scale structure of the universe is demonstrated to be statistically more pasta-shaped than would be expected under any non-FSM cosmological model",
+      "rationale": "The cosmic web already looks remarkably noodle-like. A rigorous topological comparison of cosmic filament geometry against a control distribution of random pasta shapes would be genuinely interesting science, regardless of what it finds.",
+      "weight": 4,
+      "impact_if_confirmed": 25,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "SUPPORT",
+      "description": "Physical constants are shown to vary over time in a manner consistent with deliberate, erratic, noodly interference rather than smooth cosmological evolution",
+      "rationale": "The FSM doctrine holds that He periodically alters physical constants with His Noodly Appendage, which is why carbon dating is unreliable (per Henderson). Evidence of such interference would be strong support.",
+      "weight": 7,
+      "impact_if_confirmed": 60,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "FALSIFY",
+      "description": "A complete, coherent, empirically verified theory of abiogenesis and cosmological origin is established that leaves no explanatory gap for supernatural intervention",
+      "rationale": "The FSM currently inhabits the gaps in our understanding of origin. A gapless naturalistic account would remove the space in which the FSM operates. This would not technically disprove Him, but would make Him redundant.",
+      "weight": 6,
+      "impact_if_confirmed": -40,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "FALSIFY",
+      "description": "The actual creator of the universe is identified, and found to be made of something other than spaghetti and meatballs",
+      "rationale": "If another creator is confirmed — whether pasta-based or otherwise — the specific FSM identity would be falsified, even if a supernatural creator of some kind is validated.",
+      "weight": 10,
+      "impact_if_confirmed": -99,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "FALSIFY",
+      "description": "Peer-reviewed pasta archaeology conclusively establishes that spaghetti was invented by humans in medieval China or Italy with no supernatural precursor",
+      "rationale": "If pasta is a wholly human invention with a fully documented material history, this undermines the case for a pasta-based deity having preceded the universe.",
+      "weight": 3,
+      "impact_if_confirmed": -20,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "WATCH_SIGNAL",
+      "description": "Any new cosmological discovery pertaining to the fine-tuning of universal constants or the apparent intentionality of physical laws",
+      "rationale": "Fine-tuning arguments are the most intellectually serious adjacent territory. Any development here is relevant to all supernatural creator hypotheses, including the FSM.",
+      "weight": 3,
+      "impact_if_confirmed": 10,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "WATCH_SIGNAL",
+      "description": "Bobby Henderson or the Church of the Flying Spaghetti Monster officially revise the canonical doctrine in a way that introduces falsifiable claims",
+      "rationale": "If Pastafarianism ever makes an empirically testable prediction, ThesisFlow should immediately re-evaluate the criteria structure of this thesis.",
+      "weight": 5,
+      "impact_if_confirmed": 30,
+      "current_fulfillment": 0
+    }
+  ]
+}

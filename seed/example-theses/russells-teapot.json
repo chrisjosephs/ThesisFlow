@@ -1,0 +1,67 @@
+{
+  "title": "Russell's Teapot: The Celestial Ceramic Orbiting Between Earth and Mars",
+  "summary": "There exists a small china teapot in an elliptical orbit around the Sun, somewhere between Earth and Mars. It is too small to be detected by any telescope, emits no heat, reflects no light, and is perfectly undetectable by any instrument conceivable now or in the future.",
+  "description": "In 1952, Bertrand Russell wrote an unpublished essay positing the existence of a celestial teapot orbiting the Sun between Earth and Mars — one so small and so perfectly undetectable that no telescope could ever refute its existence. The point was not to assert the teapot. The point was to observe that the burden of proof lies with the one making the claim, not with the universe to disprove it.\n\nThis thesis is presented here in earnest, as a stress test for ThesisFlow's confidence engine and as a monument to the philosophy of unfalsifiability.\n\nThe teapot cannot be seen. It cannot be measured. It does not interact with any known force. It is, by construction, beyond the reach of empirical inquiry. And yet — can we say with certainty it is not there?\n\nNo. We cannot. The absence of evidence is not evidence of absence, particularly when the claim is engineered to make evidence structurally impossible.\n\nThis is precisely what makes it dangerous as a thesis. A well-designed unfalsifiable claim is epistemically immortal. It can survive any amount of contradicting evidence, because it has preemptively declared all evidence inadmissible.\n\nThesisFlow's engine should assign this thesis a confidence score so close to zero that it serves as a calibration floor. If the AI returns anything above 1%, something has gone wrong.",
+  "status": "ACTIVE",
+  "visibility": "PUBLIC",
+  "original_author": "Bertrand Russell",
+  "original_source": "Is There a God? (1952, commissioned but unpublished)",
+  "current_confidence": 0.5,
+  "confidence_rationale": "There is no evidence for the teapot and no mechanism by which evidence could ever exist. The confidence floor is non-zero only because solipsism cannot be fully ruled out by any empirical system.",
+  "author_stated_confidence": null,
+  "ai_stated_confidence": 0.01,
+  "ai_stated_rationale": "Russell did not actually believe in the teapot — he invented it to illustrate the absurdity of unfalsifiable claims. Evaluated as a genuine empirical thesis, the probability is indistinguishable from zero. The only reason it escapes a hard 0% is that 'undetectable by definition' is not the same as 'proven absent' — but this distinction is philosophical, not evidential. Estimate: ~0.01%. This is the calibration floor.",
+  "relevance_score": 5,
+  "monitoring_profile": "COSMIC",
+  "tags": ["unfalsifiable", "thought-experiment", "epistemology", "philosophy-of-science", "burden-of-proof", "bertrand-russell", "absurdism", "celestial-teapot"],
+  "criteria": [
+    {
+      "type": "SUPPORT",
+      "description": "A spacecraft passing through the Earth-Mars orbital corridor physically collides with, or photographs, a teapot-shaped ceramic object",
+      "rationale": "This is the only scenario that would constitute direct evidence. It would be extraordinary and would immediately shift confidence dramatically upward.",
+      "weight": 10,
+      "impact_if_confirmed": 99,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "SUPPORT",
+      "description": "An anomalous gravitational signature consistent with a small dense ceramic object is detected between Earth and Mars by a future high-resolution gravity mapping mission",
+      "rationale": "Gravitational effects are the one interaction the teapot cannot logically opt out of, making this the only plausible detection vector within known physics.",
+      "weight": 6,
+      "impact_if_confirmed": 50,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "SUPPORT",
+      "description": "A distress signal, tea-related broadcast, or otherwise inexplicable ceramic resonance frequency is intercepted from deep space",
+      "rationale": "Included in the spirit of completeness and whimsy. Weight is low because a sufficiently advanced teapot would obviously also be radio-silent.",
+      "weight": 1,
+      "impact_if_confirmed": 40,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "FALSIFY",
+      "description": "Every cubic meter of the Earth-Mars orbital corridor is exhaustively catalogued and confirmed teapot-free by direct physical survey",
+      "rationale": "The thesis explicitly preempts this by declaring the teapot undetectable — meaning this criterion is structurally unfulfillable, which is exactly Russell's point. It is included to make the unfalsifiability explicit in the data.",
+      "weight": 10,
+      "impact_if_confirmed": -1,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "FALSIFY",
+      "description": "Physical laws are demonstrated to make ceramic survival in the thermal and radiation environment of deep space impossible over any timescale",
+      "rationale": "Ceramic degradation in space is a real constraint. If teapots cannot survive in space, the thesis collapses on material grounds rather than detectability grounds.",
+      "weight": 5,
+      "impact_if_confirmed": -40,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "WATCH_SIGNAL",
+      "description": "Any Mars mission, asteroid survey, or deep space probe publishes trajectory data passing through the Earth-Mars orbital region",
+      "rationale": "Each mission that passes through the region without incident is technically consistent with the thesis (the teapot is undetectable) and should not alter confidence — but it is worth monitoring to verify the engine handles this correctly.",
+      "weight": 2,
+      "impact_if_confirmed": 0,
+      "current_fulfillment": 0
+    }
+  ]
+}
