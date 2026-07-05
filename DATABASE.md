@@ -145,15 +145,15 @@ Represents the publisher or origin.
 source_type
 -----------
 [
-Government,
-Company,
-News,
-PeerReviewedJournal,
-Social,
-Blog,
-Forum,
-Individual,
-Other
+GOVERNMENT,
+COMPANY,
+NEWS,
+PEER_REVIEWED_JOURNAL,
+SOCIAL,
+BLOG,
+FORUM,
+INDIVIDUAL,
+OTHER
 ]
 
 
