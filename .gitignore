@@ -1,0 +1,16 @@
+# Environment — never commit real credentials
+.env
+.env.local
+.env.*.local
+
+# Local database backups
+database/backups/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
