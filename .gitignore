@@ -1,3 +1,4 @@
+node_modules
 # Environment — never commit real credentials
 .env
 .env.local

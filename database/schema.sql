@@ -82,6 +82,12 @@ CREATE TYPE alert_type AS ENUM (
 CREATE TYPE history_generator AS ENUM ('AI', 'USER', 'SYSTEM');
 CREATE TYPE evidence_generator AS ENUM ('AI', 'USER');
 
+CREATE TYPE follow_status AS ENUM (
+    'ACTIVE',
+    'PENDING',
+    'INVITED'
+);
+
 -- Reserved for the future knowledge-graph phase.
 CREATE TYPE claim_relationship_type AS ENUM (
     'SUPPORTS',
@@ -219,19 +225,26 @@ CREATE TABLE theses (
     visibility               thesis_visibility NOT NULL DEFAULT 'PRIVATE',
     current_confidence       NUMERIC(5,2)      NOT NULL DEFAULT 50.00,
     confidence_rationale     TEXT,
+    author_stated_confidence NUMERIC(5,2),
+    ai_stated_confidence     NUMERIC(5,2),
+    ai_stated_rationale      TEXT,
     relevance_score          SMALLINT,
+    original_author          VARCHAR(255),
+    original_source          VARCHAR(500),
     monitoring_profile_id    UUID,
     default_evidence_weight  NUMERIC(5,2)               DEFAULT 1.00,
     created_at               TIMESTAMPTZ       NOT NULL DEFAULT NOW(),
     updated_at               TIMESTAMPTZ       NOT NULL DEFAULT NOW(),
 
-    CONSTRAINT theses_pkey                   PRIMARY KEY (id),
-    CONSTRAINT theses_owner_fk               FOREIGN KEY (owner_user_id)
-                                                 REFERENCES users (id) ON DELETE RESTRICT,
-    CONSTRAINT theses_monitoring_profile_fk  FOREIGN KEY (monitoring_profile_id)
-                                                 REFERENCES monitoring_profiles (id) ON DELETE SET NULL,
-    CONSTRAINT theses_confidence_chk         CHECK (current_confidence BETWEEN 0 AND 100),
-    CONSTRAINT theses_relevance_chk          CHECK (relevance_score BETWEEN 1 AND 5)
+    CONSTRAINT theses_pkey                        PRIMARY KEY (id),
+    CONSTRAINT theses_owner_fk                    FOREIGN KEY (owner_user_id)
+                                                      REFERENCES users (id) ON DELETE RESTRICT,
+    CONSTRAINT theses_monitoring_profile_fk       FOREIGN KEY (monitoring_profile_id)
+                                                      REFERENCES monitoring_profiles (id) ON DELETE SET NULL,
+    CONSTRAINT theses_confidence_chk              CHECK (current_confidence BETWEEN 0 AND 100),
+    CONSTRAINT theses_author_stated_conf_chk      CHECK (author_stated_confidence BETWEEN 0 AND 100),
+    CONSTRAINT theses_ai_stated_conf_chk          CHECK (ai_stated_confidence BETWEEN 0 AND 100),
+    CONSTRAINT theses_relevance_chk               CHECK (relevance_score BETWEEN 1 AND 5)
 );
 
 CREATE INDEX theses_owner_idx              ON theses (owner_user_id);
@@ -335,7 +348,7 @@ CREATE TABLE criteria (
     id                  UUID          NOT NULL DEFAULT gen_random_uuid(),
     thesis_id           UUID          NOT NULL,
     description         VARCHAR(1000) NOT NULL,
-    notes               TEXT,
+    rationale           TEXT,
     type                criteria_type NOT NULL,
     weight              SMALLINT,
     impact_if_confirmed NUMERIC(5,2),
@@ -438,9 +451,10 @@ CREATE INDEX comments_thesis_idx ON comments (thesis_id);
 -- Used to split monitoring costs across followers.
 -- -----------------------------------------------------------------------------
 CREATE TABLE thesis_follows (
-    user_id    UUID        NOT NULL,
-    thesis_id  UUID        NOT NULL,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    user_id    UUID          NOT NULL,
+    thesis_id  UUID          NOT NULL,
+    status     follow_status NOT NULL DEFAULT 'ACTIVE',
+    created_at TIMESTAMPTZ   NOT NULL DEFAULT NOW(),
 
     CONSTRAINT thesis_follows_pkey      PRIMARY KEY (user_id, thesis_id),
     CONSTRAINT thesis_follows_user_fk   FOREIGN KEY (user_id)
@@ -448,6 +462,8 @@ CREATE TABLE thesis_follows (
     CONSTRAINT thesis_follows_thesis_fk FOREIGN KEY (thesis_id)
                                             REFERENCES theses (id) ON DELETE CASCADE
 );
+
+CREATE INDEX thesis_follows_status_idx ON thesis_follows (thesis_id, status);
 
 CREATE INDEX thesis_follows_thesis_idx ON thesis_follows (thesis_id);
 

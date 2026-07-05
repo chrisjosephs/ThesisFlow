@@ -104,7 +104,9 @@ Business logic remains inside the Engine.
 Thesis
 │
 ├── Confidence
+├── Confidence Rationale
 ├── Confidence History
+├── Relevance Score
 ├── Evidence
 ├── Supporting Criteria
 ├── Falsification Criteria
@@ -114,6 +116,36 @@ Thesis
 └── Comments
 ```
 
+## Thesis Visibility
+
+Every thesis has a visibility setting:
+
+| Visibility | Who can see it |
+|------------|---------------|
+| **Public** | Everyone — listed in search and explore |
+| **Unlisted** | Anyone with the direct link — not listed publicly |
+| **Private** | Owner and approved followers only |
+
+For private theses, followers have a status:
+
+- **Active** — approved, full access
+- **Pending** — requested access, awaiting owner approval
+- **Invited** — owner sent an invite, awaiting acceptance
+
+Existing followers retain access if a thesis is switched from public to private.
+
+---
+
+## Confidence vs Relevance
+
+A thesis tracks two independent scores:
+
+**Confidence** is the probability the thesis is true, updated automatically as evidence arrives.
+
+**Relevance** (1–5) is how much the thesis still matters — whether the underlying question is still being actively contested. A thesis can be 3% likely to be true but 5/5 relevant because the scientific community is still actively debating it. A settled question scores 1/5 and should stop consuming monitoring credits.
+
+Relevance is **set by the user**. The AI suggests a value alongside each monitoring run, but the user has final say.
+
 ---
 
 # Monitoring Philosophy
@@ -122,17 +154,16 @@ Users allocate monitoring resources according to importance.
 
 Examples:
 
-| Monitoring Profile | Typical Use |
-|--------------------|-------------|
-| Continuous | AI Stocks |
-| Every 15 Minutes | Crypto |
-| Hourly | Major Companies |
-| Daily | General Investing |
-| Weekly | Industry Trends |
-| Monthly | Scientific Theories |
-| Manual | Static Topics |
+| Profile | Interval | Typical Use |
+|---------|----------|-------------|
+| Continuous | 1 minute | AI stocks, breaking situations |
+| Live | 15 minutes | Crypto, fast-moving markets |
+| Active | Hourly | Major companies, active campaigns |
+| Standard | Daily | General investing, business strategy |
+| Slow | Weekly | Industry trends, policy |
+| Cosmic | Bi-weekly | Scientific theories, long-horizon ideas |
 
-Future versions may implement a credit-based monitoring system where more frequent monitoring consumes more resources.
+Monitoring costs are shared across all followers of a thesis — the more followers, the lower the per-user cost of each run.
 
 ---
 

@@ -1,0 +1,12 @@
+{
+  "name": "thesisflow",
+  "private": true,
+  "scripts": {
+    "db:seed": "node database/seed.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.0"
+  }
+}

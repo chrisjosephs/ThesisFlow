@@ -21,7 +21,12 @@ theses
 + visibility
 + current_confidence
 + confidence_rationale
++ author_stated_confidence
++ ai_stated_confidence
++ ai_stated_rationale
 + relevance_score
++ original_author
++ original_source
 + monitoring_profile_id
 + default_evidence_weight
 + created_at
@@ -214,7 +219,7 @@ criteria
 + id
 + thesis_id
 + description
-+ notes
++ rationale
 + type
 + weight
 + impact_if_confirmed
@@ -263,6 +268,25 @@ thesis_tags
 
 + thesis_id
 + tag_id
+
+
+thesis_follows
+--------------
+
+Tracks who follows a thesis. Status controls access to private theses.
+
++ user_id     → users.id
++ thesis_id   → theses.id
++ status      ENUM [ACTIVE, PENDING, INVITED]
++ created_at
+
+Where status is:
+
+[
+ACTIVE,   -- approved follower, can see the thesis
+PENDING,  -- requested access, awaiting owner approval
+INVITED   -- owner sent invite, awaiting acceptance
+]
 
 
 thesis_forks

@@ -1,0 +1,67 @@
+{
+  "title": "Roger Penrose: Conformal Cyclic Cosmology (CCC)",
+  "summary": "CCC proposes our universe is one of an infinite series of cycles called aeons, where the featureless future of one cycle becomes the Big Bang of the next.",
+  "description": "Conformal Cyclic Cosmology is a speculative cosmological model proposed by Nobel laureate Roger Penrose. It suggests our universe does not begin with a single Big Bang and end in a heat death, but rather undergoes an infinite series of cycles called aeons, where the distant, featureless future of one cycle seamlessly transitions into the Big Bang of the next via a conformal rescaling of spacetime geometry.",
+  "status": "ACTIVE",
+  "visibility": "PUBLIC",
+  "original_author": "Roger Penrose",
+  "original_source": "Cycles of Time: An Extraordinary New View of the Universe (2010)",
+  "current_confidence": 3.0,
+  "confidence_rationale": "Based on current scientific consensus, the subjective odds of Conformal Cyclic Cosmology being an accurate model of reality are around 1% to 5%. The model remains mathematically coherent but lacks direct empirical confirmation, and several of its core requirements conflict with currently observed physics.",
+  "author_stated_confidence": 25.0,
+  "ai_stated_confidence": 5.0,
+  "ai_stated_rationale": "CCC is mathematically self-consistent and authored by one of the most rigorous mathematical physicists alive — Penrose's track record (singularity theorems, twistor theory, Penrose tiles) earns his speculative work serious consideration. However, proton stability experiments at Super-Kamiokande have run for decades with no decay detected, which is a problem CCC requires solved. The Hawking points Penrose claims to see in the CMB have been independently analysed by multiple teams who find the signal consistent with random noise. The model also requires electron mass to vanish at the end of each aeon, for which nothing in current physics offers a mechanism. It sits outside the mainstream inflationary framework, which has substantial observational support. The door is not fully closed — we genuinely do not know what happens at the extreme future of the universe — but the current evidence trail does not favour it. Estimate: ~5%. Respectfully low, but not dismissible.",
+  "relevance_score": 5,
+  "monitoring_profile": "COSMIC",
+  "tags": ["cosmology", "physics", "scientific-hypothesis", "penrose", "speculative"],
+  "criteria": [
+    {
+      "type": "SUPPORT",
+      "description": "Protons proven to decay",
+      "rationale": null,
+      "weight": 9,
+      "impact_if_confirmed": 90,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "SUPPORT",
+      "description": "Higgs field proven to be variable",
+      "rationale": null,
+      "weight": 6,
+      "impact_if_confirmed": 50,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "SUPPORT",
+      "description": "The Alpha-Metric expansion naturally leads to the vanishing of inertial mass, allowing the conformal rescaling required for the next Big Bang",
+      "rationale": null,
+      "weight": 8,
+      "impact_if_confirmed": 80,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "FALSIFY",
+      "description": "Proof of Primordial B-Mode Gravitational Waves",
+      "rationale": null,
+      "weight": 9,
+      "impact_if_confirmed": -90,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "FALSIFY",
+      "description": "Absolute proof of electron stability",
+      "rationale": null,
+      "weight": 10,
+      "impact_if_confirmed": -99,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "FALSIFY",
+      "description": "Resolution of the Black Hole Information Paradox confirming information is never lost",
+      "rationale": "If black hole information is conserved, the required reduction in degrees of freedom does not occur, and the seamless conformal mapping between the death of one eon and the birth of the next mathematically falls apart.",
+      "weight": 10,
+      "impact_if_confirmed": -99,
+      "current_fulfillment": 0
+    }
+  ]
+}
