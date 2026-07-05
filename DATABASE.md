@@ -21,7 +21,11 @@ The primary domain object. Represents a proposition whose confidence changes as 
 + title
 + summary
 + description
-+ status
++ status      ENUM [DRAFT, ACTIVE, ARCHIVED, RESOLVED]
+              DRAFT    — being written; no monitoring, no revisions, not public
+              ACTIVE   — live; monitoring runs, revisions tracked
+              ARCHIVED — manually retired; no monitoring
+              RESOLVED — question answered (or expires_at reached); final state
 + visibility
 + current_confidence
 + confidence_rationale
@@ -33,6 +37,8 @@ The primary domain object. Represents a proposition whose confidence changes as 
 + original_source
 + monitoring_profile_id
 + default_evidence_weight
++ expires_at               TIMESTAMPTZ — when the question becomes unanswerable; triggers status → RESOLVED
++ resolution               TEXT        — what actually happened ("Argentina won 3–2", "Hypothesis confirmed")
 + created_at
 + updated_at
 
@@ -40,6 +46,24 @@ The primary domain object. Represents a proposition whose confidence changes as 
 thesis_confidence_history
 -------------------------
 An immutable log of every confidence change on a thesis, capturing the delta, the reason, and what triggered it.
+
+thesis_revisions
+----------------
+Records only the fields that changed on a thesis, not a full row copy. A single edit that touches three fields
+produces one revision row containing exactly those three fields. Unchanged fields are absent.
+
+    Example — user moves the expiry date:
+    { "expires_at": { "from": null, "to": "2026-07-15T00:00:00Z" } }
+
+    Example — user renames the thesis and updates the summary:
+    { "title": { "from": "old title", "to": "new title" },
+      "summary": { "from": "old summary", "to": "new summary" } }
+
++ id
++ thesis_id   → theses.id
++ changed_by  → users.id (nullable — system changes have no user)
++ changes     JSONB  { field: { from, to } }
++ created_at
 
 + id
 + thesis_id

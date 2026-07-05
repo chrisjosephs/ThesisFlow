@@ -233,6 +233,8 @@ CREATE TABLE theses (
     original_source          VARCHAR(500),
     monitoring_profile_id    UUID,
     default_evidence_weight  NUMERIC(5,2)               DEFAULT 1.00,
+    expires_at               TIMESTAMPTZ,
+    resolution               TEXT,
     created_at               TIMESTAMPTZ       NOT NULL DEFAULT NOW(),
     updated_at               TIMESTAMPTZ       NOT NULL DEFAULT NOW(),
 
@@ -279,6 +281,29 @@ CREATE TABLE thesis_confidence_history (
 
 CREATE INDEX thesis_confidence_history_thesis_idx      ON thesis_confidence_history (thesis_id);
 CREATE INDEX thesis_confidence_history_created_at_idx  ON thesis_confidence_history (created_at DESC);
+
+
+-- thesis_revisions
+-- Stores only the fields that changed, not a full copy of the row.
+-- Example: changing expires_at produces {"expires_at": {"from": null, "to": "2026-07-15T00:00:00Z"}}
+-- Multi-field edits land in one row. Unchanged fields are absent.
+-- -----------------------------------------------------------------------------
+CREATE TABLE thesis_revisions (
+    id             UUID        NOT NULL DEFAULT gen_random_uuid(),
+    thesis_id      UUID        NOT NULL,
+    changed_by     UUID,
+    changes        JSONB       NOT NULL,
+    created_at     TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+
+    CONSTRAINT thesis_revisions_pkey          PRIMARY KEY (id),
+    CONSTRAINT thesis_revisions_thesis_fk     FOREIGN KEY (thesis_id)
+                                                  REFERENCES theses (id) ON DELETE CASCADE,
+    CONSTRAINT thesis_revisions_user_fk       FOREIGN KEY (changed_by)
+                                                  REFERENCES users (id) ON DELETE SET NULL,
+    CONSTRAINT thesis_revisions_changes_chk   CHECK (jsonb_typeof(changes) = 'object' AND changes != '{}'::jsonb)
+);
+
+CREATE INDEX thesis_revisions_thesis_idx     ON thesis_revisions (thesis_id, created_at DESC);
 
 
 -- -----------------------------------------------------------------------------
