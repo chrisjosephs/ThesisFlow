@@ -20,8 +20,6 @@ theses
 + status
 + visibility
 + current_confidence
-+ confidence_rationale
-+ relevance_score
 + monitoring_profile_id
 + default_evidence_weight
 + created_at
@@ -214,11 +212,7 @@ criteria
 + id
 + thesis_id
 + description
-+ notes
 + type
-+ weight
-+ impact_if_confirmed
-+ current_fulfillment
 
 Where type is:
 
