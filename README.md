@@ -75,7 +75,11 @@ This repository contains the business logic of ThesisFlow.
 
 ## thesisflow-android
 
-Native Android application.
+Ziggy by ThesisFlow - The Native Android application.
+
+Widget notification:
+
+>    "Your confidence just increased 18%."
 
 Responsibilities:
 
@@ -246,17 +250,36 @@ Monitoring costs are shared across all followers of a thesis — the more follow
 
 ---
 
+# Product Vocabulary
+
+| Term | Meaning |
+|------|---------|
+| **Thesis** | A proposition whose confidence changes as evidence arrives |
+| **Contender** | A user who publishes a thesis — stepping into the arena |
+| **Contend this thesis!** | The button that publishes a thesis (Draft → Active) |
+| **CONTENDERS READY.** | The moment a thesis goes live |
+| **Argue the Toss!** | The tagline; the comments section on every thesis |
+| **Ziggy** | The Android home screen widget — your ambient AI advisor |
+
+> **Note on "Contender" vs "user":** Contenders are what ThesisFlow calls its users everywhere in the product, UI, API responses, and application code. The one exception is the database, where the table remains `users` — this is a deliberate choice. Infrastructure follows convention; the brand term lives above it. The TypeORM entity class is `Contender` mapped to the `users` table with `@Entity('users')`.
+
+The framing is deliberate. A Contender steps into an arena. The Gladiators are the evidence, the AI, and the community — all coming at the thesis from every angle. Ziggy is in your earpiece telling you the odds. The crowd argues the toss.
+
+Publishing a thesis is not submitting a document. It is a declaration that you are willing to be tested.
+
+---
+
 # Long-Term Vision
 
-ThesisFlow is not a speculation engine, nor an RSS reader.
+ThesisFlow is not a prediction market. It is not a debate platform. It is not an RSS reader.
 
-It is an evidence engine.
+It is a belief-updating engine.
 
-Incoming information changes the confidence of theses.
+The most important thing a Contender can do is change their mind. Someone who publishes at 90% confidence and arrives at 35% six months later — because the evidence moved — is not losing. They are the most intellectually honest person on the platform.
 
-Users follow, fork, improve and monitor theses over time.
+Most platforms punish changing your mind. ThesisFlow rewards it. The system is built around following the evidence, not defending the original position.
 
-The platform aims to become a living knowledge graph of evolving ideas, where every confidence change is supported by evidence.
+Incoming information changes the confidence of theses. Users follow, fork, improve and monitor theses over time. The platform aims to become a living record of how beliefs actually evolve when held up against reality.
 
 ---
 
