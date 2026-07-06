@@ -1,0 +1,100 @@
+{
+  "title": "Nvidia's CUDA Ecosystem Is Too Entrenched to Be Displaced as the Default AI Compute Platform Before 2029",
+  "summary": "Despite massive investment by hyperscalers in custom silicon and AMD's push with ROCm, Nvidia's CUDA ecosystem — its software tooling, developer familiarity, and hardware pipeline — is structurally deep enough to remain the default choice for AI training and inference through 2028.",
+  "description": "This is not a thesis about Nvidia's stock price.\n\nIt is a thesis about whether a decade of software ecosystem lock-in, combined with the fastest hardware roadmap in the industry, is enough to withstand a coordinated attempt by the world's largest companies to route around it.\n\nThe case for the moat: CUDA has ~15 years of adoption. PyTorch, JAX, and the tooling that runs the world's AI research are CUDA-native. Switching costs are real — rewriting training infrastructure is expensive, slow, and risky. Nvidia's Blackwell architecture has widened the performance gap rather than narrowed it. The model labs (OpenAI, Anthropic, Mistral, Meta) are all training on Nvidia. That gravitational pull compounds.\n\nThe case against: AWS Trainium 2, Google TPU v5, Microsoft Maia 100, and Meta's MTIA are not toys. These companies are spending billions specifically to reduce Nvidia dependence. Inference (as opposed to training) is where the volume is going, and inference is less CUDA-dependent — it runs on CPUs, on custom inference chips, on edge devices. ROCm has improved materially. The assumption that CUDA is forever may be exactly the kind of thing that looks obvious right up until it isn't.\n\nThe 2029 horizon is deliberate. This thesis does not claim Nvidia holds the position forever — only that the ecosystem cannot be materially displaced in the next three years. That is a testable, time-bound contention.",
+  "status": "ACTIVE",
+  "visibility": "PUBLIC",
+  "original_author": "Christopher Josephs",
+  "original_source": "Personal investment thesis, July 2026",
+  "expires_at": "2028-12-31T23:59:59Z",
+  "current_confidence": 65.0,
+  "confidence_rationale": "The CUDA moat is real and the switching costs are high. However, hyperscaler custom silicon has matured faster than most expected three years ago, and inference workloads — where displacement is easiest — now represent the majority of AI compute spend. 65% reflects genuine belief in the moat without ignoring the pace of the alternative.",
+  "author_stated_confidence": 70.0,
+  "ai_stated_confidence": 61.0,
+  "ai_stated_rationale": "CUDA lock-in is significant and well-documented. The training workload case for displacement before 2029 is weak — migration risk is too high for frontier labs under competitive pressure. However, inference is a different story: it is already fragmenting across custom silicon, CPUs, and edge devices, and most hyperscaler custom chips are inference-first. The 2029 framing saves this thesis from the clearest falsification vector, but the inference fragmentation trend is real and accelerating. 61% — bullish on training entrenchment, more sceptical on inference.",
+  "relevance_score": 5,
+  "monitoring_profile": "ACTIVE",
+  "tags": ["nvidia", "ai-infrastructure", "semiconductors", "cuda", "custom-silicon", "company-strategy", "data-centre", "hyperscalers"],
+  "criteria": [
+    {
+      "type": "SUPPORT",
+      "description": "Nvidia retains >65% share of AI training workloads among hyperscalers through end of 2027",
+      "rationale": "Training is where CUDA lock-in is deepest. Hyperscalers moving training workloads to custom silicon at scale would be the clearest leading indicator of structural displacement. Below 65% would be significant.",
+      "weight": 9,
+      "impact_if_confirmed": 20,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "SUPPORT",
+      "description": "PyTorch and JAX maintain CUDA as their primary and default backend with no announced deprecation",
+      "rationale": "The frameworks are the ecosystem. If the framework maintainers signal a move away from CUDA-first, the downstream implications are severe. Continued CUDA primacy in PyTorch is a strong moat indicator.",
+      "weight": 8,
+      "impact_if_confirmed": 15,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "SUPPORT",
+      "description": "Nvidia's data centre gross margins remain above 60% for six consecutive quarters",
+      "rationale": "Sustained high margins indicate pricing power, which is only possible when alternatives are not yet competitive enough to force discounting. Margin compression is an early signal of real competitive pressure.",
+      "weight": 7,
+      "impact_if_confirmed": 10,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "FALSIFY",
+      "description": "A major hyperscaler publicly migrates >30% of AI training workloads to in-house silicon within any 12-month period before 2029",
+      "rationale": "This is the clearest falsification signal. A hyperscaler announcing a training migration at scale means the switching cost has been absorbed and the alternative is production-ready. This would materially undermine the moat thesis.",
+      "weight": 10,
+      "impact_if_confirmed": -45,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "FALSIFY",
+      "description": "AMD ROCm achieves broad, documented compatibility with CUDA codebases without significant manual porting effort",
+      "rationale": "The CUDA moat is largely a software moat. If ROCm becomes a drop-in replacement for the majority of workloads, the hardware switching cost drops dramatically. Documented compatibility at scale from a major ML framework would be the evidence.",
+      "weight": 8,
+      "impact_if_confirmed": -30,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "FALSIFY",
+      "description": "A non-Nvidia accelerator matches or beats Nvidia on two consecutive MLPerf Training benchmarks",
+      "rationale": "MLPerf is the closest thing AI compute has to an objective benchmark. Sustained parity on training benchmarks would remove the performance premium that justifies CUDA lock-in for the frontier labs.",
+      "weight": 7,
+      "impact_if_confirmed": -25,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "WATCH_SIGNAL",
+      "description": "Quarterly MLPerf Training and Inference benchmark results — Nvidia relative performance trend",
+      "rationale": "The benchmark gap is the headline number. If it narrows quarter on quarter, the case for displacement strengthens even before any actual market share moves.",
+      "weight": 7,
+      "impact_if_confirmed": 0,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "WATCH_SIGNAL",
+      "description": "Hyperscaler CapEx disclosures — proportion explicitly allocated to Nvidia versus custom silicon",
+      "rationale": "AWS, Google, Microsoft, and Meta all report capital expenditure. The split between Nvidia procurement and in-house silicon investment is the clearest forward indicator of intent.",
+      "weight": 8,
+      "impact_if_confirmed": 0,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "WATCH_SIGNAL",
+      "description": "Major foundation model training run announcements — which hardware they ran on",
+      "rationale": "When OpenAI, Anthropic, Google DeepMind, or Meta announce a significant training run, the hardware choice is public signal. A run on non-Nvidia hardware at frontier scale would be the most credible signal in the field.",
+      "weight": 9,
+      "impact_if_confirmed": 0,
+      "current_fulfillment": 0
+    },
+    {
+      "type": "WATCH_SIGNAL",
+      "description": "AMD quarterly AI accelerator revenue and customer disclosure",
+      "rationale": "AMD is the most credible alternative hardware vendor. Revenue growth and named customer wins are the leading indicator of ecosystem defection.",
+      "weight": 6,
+      "impact_if_confirmed": 0,
+      "current_fulfillment": 0
+    }
+  ]
+}

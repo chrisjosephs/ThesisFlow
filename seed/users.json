@@ -5,5 +5,12 @@
     "password": "demo1234",
     "bio": "ThesisFlow demo account. Exploring scientific hypotheses and investment theses.",
     "avatar_url": null
+  },
+  {
+    "username": "digibitsy",
+    "email": "digibitsy@gmail.com",
+    "password": "changeme",
+    "bio": "Building ThesisFlow. Interested in AI infrastructure, epistemics, and arguing the toss.",
+    "avatar_url": null
   }
 ]
