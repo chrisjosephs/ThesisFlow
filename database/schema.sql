@@ -246,7 +246,7 @@ CREATE TABLE theses (
     CONSTRAINT theses_confidence_chk              CHECK (current_confidence BETWEEN 0 AND 100),
     CONSTRAINT theses_author_stated_conf_chk      CHECK (author_stated_confidence BETWEEN 0 AND 100),
     CONSTRAINT theses_ai_stated_conf_chk          CHECK (ai_stated_confidence BETWEEN 0 AND 100),
-    CONSTRAINT theses_relevance_chk               CHECK (relevance_score BETWEEN 1 AND 5)
+    CONSTRAINT theses_relevance_chk               CHECK (relevance_score BETWEEN 0 AND 5)
 );
 
 CREATE INDEX theses_owner_idx              ON theses (owner_user_id);

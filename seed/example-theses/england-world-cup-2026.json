@@ -12,7 +12,7 @@
   "author_stated_confidence": 85.0,
   "ai_stated_confidence": 11.0,
   "ai_stated_rationale": "A 32-team tournament gives any group-stage qualifier roughly a 3% base rate. England are clearly above average, perhaps top 6–8 in the field, which inflates the estimate to the 10–15% range. The author's 85% almost certainly reflects supporter optimism rather than calibrated probability. Historical knockout-stage underperformance, particularly on penalties, is real and data-backed. Estimate: ~11%.",
-  "relevance_score": 8,
+  "relevance_score": 5,
   "monitoring_profile": "STANDARD",
   "tags": ["football", "sports-prediction", "world-cup", "england", "time-bound", "falsifiable", "2026"],
   "criteria": [

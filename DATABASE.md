@@ -32,7 +32,7 @@ The primary domain object. Represents a proposition whose confidence changes as 
 + author_stated_confidence
 + ai_stated_confidence
 + ai_stated_rationale
-+ relevance_score
++ relevance_score  SMALLINT 0–5 — how topically active this thesis is right now (0 = dormant/ignore, 5 = highly active)
 + original_author
 + original_source
 + monitoring_profile_id
