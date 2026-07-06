@@ -237,11 +237,26 @@ monitoring_profiles
 -------------------
 Defines how frequently a thesis is checked for new evidence, from real-time to bi-weekly. Seeded at startup; users choose one per thesis.
 
+The monitoring tempo also governs how quickly community confidence votes decay. Faster monitoring
+= faster decay, because evidence is arriving more frequently and opinions formed before it are
+less trustworthy. Both parameters are calibrated per profile rather than being global constants.
+
 + id
 + name
 + refresh_interval_seconds
 + estimated_cost
 + description
++ community_half_life_days  — age at which a community vote carries half its original weight
++ community_stale_days      — days since most-recent vote beyond which average is flagged stale
+
+| Profile    | Interval   | Half-life   | Stale after |
+|------------|------------|-------------|-------------|
+| CONTINUOUS | 1 min      | 0.25 days   | 1 day       |
+| LIVE       | 15 min     | 1 day       | 3 days      |
+| ACTIVE     | 1 hour     | 7 days      | 21 days     |
+| STANDARD   | 1 day      | 30 days     | 60 days     |
+| SLOW       | 1 week     | 90 days     | 180 days    |
+| COSMIC     | 2 weeks    | 180 days    | 365 days    |
 
 
 criteria
@@ -304,6 +319,30 @@ Join table linking theses to their tags.
 
 + thesis_id
 + tag_id
+
+
+user_confidence_submissions
+---------------------------
+Append-only log of user confidence estimates. Every submission creates a new row — full
+history is preserved. Users can submit as many times as they like as evidence changes.
+
+The community average is computed from the most-recent submission per user, decay-weighted
+by age (60-day half-life: a 60-day-old vote counts half as much as a fresh one). This means
+the average naturally responds to recent opinion shifts without requiring any manual expiry.
+
+Only accumulates on public/unlisted theses — private theses receive no external submissions.
+
++ id
++ thesis_id                       → theses.id
++ user_id                         → users.id
++ confidence                      NUMERIC(5,2) — 0–100, the user's estimate
++ rationale                       TEXT (optional) — why they gave this rating
++ thesis_confidence_at_submission  NUMERIC(5,2) — snapshot of current_confidence at vote time
+                                   Enables staleness detection: if current_confidence has drifted
+                                   significantly from this value, the vote may no longer reflect
+                                   the user's actual view given current evidence.
++ created_at
++ updated_at
 
 
 thesis_follows

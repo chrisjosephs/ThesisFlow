@@ -143,11 +143,15 @@ CREATE TRIGGER users_set_updated_at
 -- monitoring_profiles
 -- -----------------------------------------------------------------------------
 CREATE TABLE monitoring_profiles (
-    id                       UUID          NOT NULL DEFAULT gen_random_uuid(),
-    name                     VARCHAR(100)  NOT NULL,
-    refresh_interval_seconds INTEGER       NOT NULL,
-    estimated_cost           NUMERIC(10,4),
-    description              VARCHAR(500),
+    id                          UUID          NOT NULL DEFAULT gen_random_uuid(),
+    name                        VARCHAR(100)  NOT NULL,
+    refresh_interval_seconds    INTEGER       NOT NULL,
+    estimated_cost              NUMERIC(10,4),
+    description                 VARCHAR(500),
+    -- Community confidence decay: how quickly user votes lose weight as evidence moves on.
+    -- Faster monitoring tempo = faster decay. Both calibrated per profile.
+    community_half_life_days    NUMERIC(8,2)  NOT NULL DEFAULT 30,
+    community_stale_days        INTEGER       NOT NULL DEFAULT 90,
 
     CONSTRAINT monitoring_profiles_pkey             PRIMARY KEY (id),
     CONSTRAINT monitoring_profiles_name_uk          UNIQUE (name),
@@ -155,13 +159,17 @@ CREATE TABLE monitoring_profiles (
 );
 
 -- Platform-defined cadence presets
-INSERT INTO monitoring_profiles (name, refresh_interval_seconds, description) VALUES
-    ('CONTINUOUS',  60,       'Real-time — AI stocks, breaking situations'),
-    ('LIVE',        900,      'Every 15 minutes — crypto, fast-moving markets'),
-    ('ACTIVE',      3600,     'Hourly — major companies, active campaigns'),
-    ('STANDARD',    86400,    'Daily — general investing, business strategy'),
-    ('SLOW',        604800,   'Weekly — industry trends, policy'),
-    ('COSMIC',      1209600,  'Bi-weekly — scientific theories, long-horizon ideas');
+-- community_half_life_days: age at which a vote carries half its original weight
+-- community_stale_days: age of most-recent vote beyond which the average is flagged stale
+INSERT INTO monitoring_profiles
+    (name, refresh_interval_seconds, description, community_half_life_days, community_stale_days)
+VALUES
+    ('CONTINUOUS',  60,       'Real-time — AI stocks, breaking situations',          0.25,  1  ),
+    ('LIVE',        900,      'Every 15 minutes — crypto, fast-moving markets',      1,     3  ),
+    ('ACTIVE',      3600,     'Hourly — major companies, active campaigns',          7,     21 ),
+    ('STANDARD',    86400,    'Daily — general investing, business strategy',        30,    60 ),
+    ('SLOW',        604800,   'Weekly — industry trends, policy',                    90,    180),
+    ('COSMIC',      1209600,  'Bi-weekly — scientific theories, long-horizon ideas', 180,   365);
 
 
 -- -----------------------------------------------------------------------------
@@ -468,6 +476,36 @@ CREATE TABLE comments (
 );
 
 CREATE INDEX comments_thesis_idx ON comments (thesis_id);
+
+
+-- -----------------------------------------------------------------------------
+-- user_confidence_submissions
+-- One row per user per thesis. Users submit their personal confidence estimate.
+-- Only meaningful on public/unlisted theses — private theses receive no submissions
+-- from other users by definition. Upsertable: a user can revise their estimate.
+-- -----------------------------------------------------------------------------
+-- Append-only log: each submission is a new row, preserving full history.
+-- The community average is computed from the most-recent submission per user,
+-- decay-weighted by age (60-day half-life). No UNIQUE constraint — history is the point.
+CREATE TABLE user_confidence_submissions (
+    id                              UUID             NOT NULL DEFAULT gen_random_uuid(),
+    thesis_id                       UUID             NOT NULL,
+    user_id                         UUID             NOT NULL,
+    confidence                      NUMERIC(5,2)     NOT NULL,
+    rationale                       TEXT,
+    thesis_confidence_at_submission NUMERIC(5,2)     NOT NULL,
+    created_at                      TIMESTAMPTZ      NOT NULL DEFAULT NOW(),
+
+    CONSTRAINT user_confidence_submissions_pkey      PRIMARY KEY (id),
+    CONSTRAINT user_confidence_submissions_thesis_fk FOREIGN KEY (thesis_id)
+                                                         REFERENCES theses (id) ON DELETE CASCADE,
+    CONSTRAINT user_confidence_submissions_user_fk   FOREIGN KEY (user_id)
+                                                         REFERENCES users (id) ON DELETE CASCADE,
+    CONSTRAINT user_confidence_submissions_conf_chk  CHECK (confidence BETWEEN 0 AND 100)
+);
+
+-- Covers the most common query: latest submission per user for a given thesis
+CREATE INDEX user_confidence_submissions_thesis_user_idx ON user_confidence_submissions (thesis_id, user_id, created_at DESC);
 
 
 -- -----------------------------------------------------------------------------
