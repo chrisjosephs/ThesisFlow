@@ -2,7 +2,7 @@
 
 > The root workspace for the ThesisFlow ecosystem.
 
-ThesisFlow is an AI-powered platform for creating, monitoring and evolving **theses**.
+ThesisFlow is an AI-assisted platform for creating, monitoring and evolving **theses**.
 
 A thesis may be:
 
