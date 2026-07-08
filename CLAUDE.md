@@ -22,6 +22,14 @@ Product vocabulary
 - The TypeORM entity class is `Contender` with `@Entity('users')`.
 - Services, controllers, and DTOs use `Contender` / `Contenders` throughout.
 
+Loading state language
+
+Every async action has two phases, each with its own copy:
+- Phase 1 — CMS / user-side work (saving, validating): **"Contenders, ready…"**
+- Phase 2 — LLM / AI / external API work (scoring, monitoring): **"Gladiators, ready…"**
+
+This mirrors the Gladiators TV show cadence and should be used consistently across web, mobile, and widget loading states.
+
 Design principles
 
 - Engine contains business logic.

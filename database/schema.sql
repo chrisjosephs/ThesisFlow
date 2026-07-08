@@ -70,6 +70,13 @@ CREATE TYPE criteria_type AS ENUM (
     'WATCH_SIGNAL'
 );
 
+CREATE TYPE criteria_status AS ENUM (
+    'active',
+    'confirmed',
+    'not_triggered',
+    'removed'
+);
+
 CREATE TYPE alert_type AS ENUM (
     'CONFIDENCE_THRESHOLD',
     'FALSIFICATION_TRIGGERED',
@@ -375,28 +382,40 @@ CREATE INDEX documents_published_at_idx  ON documents (published_at DESC);
 
 -- -----------------------------------------------------------------------------
 -- criteria
--- Supporting and falsification criteria belonging to a thesis.
+-- Append-only: each row is one version of a criterion.
+-- logical_id groups all versions of the same criterion across edits.
+-- retired_at IS NULL identifies the currently active version.
+-- status records the lifecycle outcome (confirmed, not_triggered, removed).
+-- Evidence in thesis_evidence still points to criteria.id (specific version).
 -- -----------------------------------------------------------------------------
 CREATE TABLE criteria (
-    id                  UUID          NOT NULL DEFAULT gen_random_uuid(),
-    thesis_id           UUID          NOT NULL,
-    description         VARCHAR(1000) NOT NULL,
+    id                  UUID            NOT NULL DEFAULT gen_random_uuid(),
+    logical_id          UUID            NOT NULL,
+    thesis_id           UUID            NOT NULL,
+    description         VARCHAR(1000)   NOT NULL,
     rationale           TEXT,
-    type                criteria_type NOT NULL,
+    type                criteria_type   NOT NULL,
     weight              SMALLINT,
     impact_if_confirmed NUMERIC(5,2),
-    current_fulfillment NUMERIC(5,2)           DEFAULT 0.00,
+    current_fulfillment NUMERIC(5,2)             DEFAULT 0.00,
+    status              criteria_status NOT NULL  DEFAULT 'active',
+    created_at          TIMESTAMPTZ     NOT NULL  DEFAULT NOW(),
+    retired_at          TIMESTAMPTZ,
+    retired_reason      TEXT,
 
-    CONSTRAINT criteria_pkey              PRIMARY KEY (id),
-    CONSTRAINT criteria_thesis_fk         FOREIGN KEY (thesis_id)
-                                              REFERENCES theses (id) ON DELETE CASCADE,
-    CONSTRAINT criteria_weight_chk        CHECK (weight BETWEEN 1 AND 10),
-    CONSTRAINT criteria_impact_chk        CHECK (impact_if_confirmed BETWEEN -100 AND 100),
-    CONSTRAINT criteria_fulfillment_chk   CHECK (current_fulfillment BETWEEN 0 AND 100)
+    CONSTRAINT criteria_pkey            PRIMARY KEY (id),
+    CONSTRAINT criteria_thesis_fk       FOREIGN KEY (thesis_id)
+                                            REFERENCES theses (id) ON DELETE CASCADE,
+    CONSTRAINT criteria_weight_chk      CHECK (weight BETWEEN 1 AND 10),
+    CONSTRAINT criteria_impact_chk      CHECK (impact_if_confirmed BETWEEN -100 AND 100),
+    CONSTRAINT criteria_fulfillment_chk CHECK (current_fulfillment BETWEEN 0 AND 100)
 );
 
-CREATE INDEX criteria_thesis_idx ON criteria (thesis_id);
-CREATE INDEX criteria_type_idx   ON criteria (type);
+CREATE INDEX criteria_thesis_idx  ON criteria (thesis_id);
+CREATE INDEX criteria_type_idx    ON criteria (type);
+CREATE INDEX criteria_logical_idx ON criteria (logical_id);
+-- Partial index: fast lookup of current active version per thesis
+CREATE INDEX criteria_active_idx  ON criteria (thesis_id) WHERE retired_at IS NULL;
 
 
 -- -----------------------------------------------------------------------------
